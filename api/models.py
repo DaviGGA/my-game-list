@@ -1,4 +1,5 @@
 from django.db import models
+import uuid
 from django.contrib.auth.models import AbstractUser
 
 # Create your models here.
@@ -9,4 +10,5 @@ class Teste(models.Model):
     number = models.IntegerField()
 
 class User(AbstractUser):
-    pass
+    email = models.EmailField(unique=True)
+    

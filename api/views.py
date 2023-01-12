@@ -11,3 +11,7 @@ class TestView(generics.CreateAPIView):
         queryset= Teste.objects.all()
 
         return queryset
+
+class UserRegisterView(generics.CreateAPIView):
+    serializer_class = UserRegisterSerializer
+    
