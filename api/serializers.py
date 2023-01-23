@@ -52,9 +52,28 @@ class UserRegisterSerializer(serializers.ModelSerializer):
         user.username = f"Username{user_id.zfill(5)}"
         user.save()
 
-        return user
+        user_profile = Profile.objects.create(user=user)
+        user_profile.save()
 
+        return user,user_profile
 
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = '__all__'
+        extra_kwargs = {
+            'email' : {'read_only' : True}
+        }
     
+    def update(self,instance):
+        user = self.context['request'].user
 
+        if user.pk != instance.pk:
+            raise serializers.ValidationError(
+                {'authorization' : "You don't have permission to update this user"}
+            )
+
+        instance.save()
+
+        return instance
 
