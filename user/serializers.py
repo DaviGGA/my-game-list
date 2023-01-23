@@ -65,7 +65,7 @@ class ProfileSerializer(serializers.ModelSerializer):
             'email' : {'read_only' : True}
         }
     
-    def update(self,instance):
+    def update(self,instance,validated_data):
         user = self.context['request'].user
 
         if user.pk != instance.pk:

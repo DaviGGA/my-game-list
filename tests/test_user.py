@@ -1,4 +1,4 @@
-from api.models import User
+from user.models import User
 from django.urls import reverse
 from unittest import TestCase
 import pytest
