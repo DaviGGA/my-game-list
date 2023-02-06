@@ -55,3 +55,7 @@ class Profile(models.Model):
             surname = ''
 
         return surname
+
+class Friend(models):
+    user = models.ForeignKey(Profile, on_delete = models.CASCADE)
+    friend = models.ForeignKey(Profile,on_delete= models.CASCADE)
